@@ -1,0 +1,25 @@
+@host = https://localhost:4000
+@contentType = application/json
+@createdAt = {{$datetime 'YYYY-MM-DD'}}
+@modifiedBy = {{$processEnv USERNAME}}
+
+###
+GET {{host}}/houses 
+###
+GET {{host}}/house/2 
+
+# @name createComment
+POST {{host}}/comments HTTP/1.1
+Content-Type: {{contentType}}
+
+{
+    "content": "fake content",
+    "created_at": "{{createdAt}}",
+    "modified_by": "{{modifiedBy}}"
+}
+
+###
+curl -X GET 'https://localhost:4000/houses' 
+
+###
+curl -X 'GET' 'https://localhost:4000/house/2' -H 'accept: application/json'
